@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clothing_app/models/product_model.dart';
 
 import '../widgets/detail_back_button.dart';
-import '../widgets/detail_data.dart';
-import '../widgets/detail_image.dart';
-import '../widgets/detail_title.dart';
 
 class Details extends StatelessWidget {
   const Details({super.key});
@@ -14,35 +11,100 @@ class Details extends StatelessWidget {
     final arguments = ModalRoute.of(context)!.settings.arguments as Product;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.white, Colors.grey.shade200],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  children: [
-                    DetailImage(image: arguments.img),
-                    DetailTitle(id: arguments.id, name: arguments.name),
-                  ],
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10.0,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image.network(
+                      arguments.img,
+                      height: 300,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                SizedBox(width: 20),
-                Column(
-                  children: [
-                    DetailData(description: arguments.description, price: arguments.price),
-                  ],
+                const SizedBox(height: 20.0),
+                Text(
+                  arguments.name,
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 30.0),
+                Card(
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Description",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10.0),
+                        Text(
+                          arguments.description,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey.shade700,
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        Text(
+                          "\$${arguments.price.toStringAsFixed(2)}",
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-        ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: const DetailBackButton(),
     );
   }
 }
-
