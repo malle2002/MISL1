@@ -9,14 +9,14 @@ class DetailImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-      width: 400,  // Set width to 200dp
-      height: 400, // Set height to 200dp
+      width: 400,
+      height: 400,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(32.0),
         child: Image.network(
           image,
-          fit: BoxFit.fill, // Use BoxFit.cover to fill the container while maintaining aspect ratio
-          alignment: Alignment.center, // Align image to the center
+          fit: BoxFit.fill,
+          alignment: Alignment.center,
         ),
       ),
     );

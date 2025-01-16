@@ -1,6 +1,3 @@
-import 'dart:collection';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clothing_app/models/product_model.dart';
 
@@ -30,21 +27,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.redAccent[100],
-        leading: IconButton(onPressed: () {},
-            icon: const Icon(Icons.menu, color: Colors.white, size: 24,)),
-        title: const Text("Products App", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+        title: const Text("216147", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
         centerTitle: true,
-        actions: [
-          IconButton(onPressed: () {},
-              icon: const Icon(Icons.settings, color: Colors.white, size: 24))
-        ],
       ),
       body: ProductsGrid(products: products),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Share',
-        child: const Icon(Icons.share_rounded),
-      ),
     );
   }
 }

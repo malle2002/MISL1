@@ -12,14 +12,16 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Product;
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         physics: const BouncingScrollPhysics(),
-        child: Container(
-          child: Center(
+        child: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,  // Center the row's children horizontally
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
@@ -27,7 +29,7 @@ class Details extends StatelessWidget {
                     DetailTitle(id: arguments.id, name: arguments.name),
                   ],
                 ),
-                SizedBox(width: 20),  // Optional: space between the columns
+                SizedBox(width: 20),
                 Column(
                   children: [
                     DetailData(description: arguments.description, price: arguments.price),
@@ -43,3 +45,4 @@ class Details extends StatelessWidget {
     );
   }
 }
+

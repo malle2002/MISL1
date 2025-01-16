@@ -14,7 +14,7 @@ class _ProductsGridState extends State<ProductsGrid> {
     final width = MediaQuery.of(context).size.width;
     final margin = width * 0.2;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: margin),  // Add 20% margin on both sides
+      padding: EdgeInsets.symmetric(horizontal: margin),
       child: GridView.count(
         padding: const EdgeInsets.all(6),
         crossAxisCount: 2,
